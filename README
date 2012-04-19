@@ -1,0 +1,24 @@
+#+title: =tplisp=
+#+options: toc:nil num:nil
+
+=tplisp= is a minimalistic interepter of an extremely limited (at the
+moment) subset of R5RS Scheme. Currently supported:
+
+- Quoting (keyword *and* single-quote syntax)
+- Eval (=tpeval()= -- reuses the built-in eval)
+- Proper lexically scoped environments & closures
+- Vectors (keyword *and* hash syntax)
+- =apply=, and various other built-ins
+
+Not currently supported:
+
+- Macros
+- Tail recursion
+- Call-with-current-continuation (call/cc)
+- Dotted-tail notation
+
+The upshot is that Perl will moan at you if you recurse too
+deeply. Also, if you construct a vector that looks too much like a
+linked list (nested cons cells), the repl's pretty-printer will get
+confused (the actual data is safe though).
+
