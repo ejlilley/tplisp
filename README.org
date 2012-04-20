@@ -1,11 +1,11 @@
 #+title: =tplisp=
 #+options: toc:nil num:nil
 
-=tplisp= is a minimalistic interepter of an extremely limited (at the
+=tplisp= is a minimalistic interpreter of an extremely limited (at the
 moment) subset of R5RS Scheme. The internals are very lisp-y in their
 own right, and not at all object-oriented for some reason.
 
-* Currently supported:
+** Currently supported:
 
 - Quoting (keyword *and* single-quote syntax)
 - Eval (=eval= calls the built-in =tpeval()= directly)
@@ -13,7 +13,7 @@ own right, and not at all object-oriented for some reason.
 - Vectors (keyword *and* hash syntax)
 - =apply=, and various other built-ins
 
-* Not currently supported:
+** Not currently supported:
 
 - Macros
 - Tail recursion (The upshot is that Perl will moan at you if you
@@ -21,7 +21,7 @@ own right, and not at all object-oriented for some reason.
 - Call-with-current-continuation (call/cc)
 - Dotted-tail notation (in quoting and in lambdas)
 
-* Extra features:
+** Extra features:
 
 - =dump= calls Data::Dumper::Dumper on its argument. Helpful for
   debugging.
@@ -40,8 +40,7 @@ own right, and not at all object-oriented for some reason.
   repl. Including is =lib.scm=, which contains definitions for some
   common functions (=map=, =fold= etc.).
 
-
-* Extra bugs:
+** Extra bugs:
 
 - The various equality operators (=eq= etc.) are slightly inconsistent
   and unhelpful at the moment.
