@@ -251,7 +251,7 @@ sub add_globals($) {
     $env->{"display"} = sub {print to_string(car($_[0])); print "\n"; return};
     $env->{"newline"} = sub {print "\n"; return;};
     $env->{"loadfile"} = sub {load_file(${car($_[0])},car(cdr($_[0]))); return;};
-    $env->{"tpeval"} = sub {tpeval(car($_[0]),car(cdr($_[0])));};
+    $env->{"eval"} = sub {tpeval(car($_[0]),car(cdr($_[0])));};
     $env->{"null"} = sub {(ref car($_[0]) eq 'ARRAY' && scalar @{car($_[0])} == 0) ? \ '#t' : \ '#f'};
     $env->{"user-initial-environment"} = $env; # just like scheme!
     return $env;

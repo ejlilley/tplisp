@@ -2,23 +2,50 @@
 #+options: toc:nil num:nil
 
 =tplisp= is a minimalistic interepter of an extremely limited (at the
-moment) subset of R5RS Scheme. Currently supported:
+moment) subset of R5RS Scheme. The internals are very lisp-y in their
+own right, and not at all object-oriented for some reason.
+
+* Currently supported:
 
 - Quoting (keyword *and* single-quote syntax)
-- Eval (=tpeval()= -- reuses the built-in eval)
+- Eval (=eval= calls the built-in =tpeval()= directly)
 - Proper lexically scoped environments & closures
 - Vectors (keyword *and* hash syntax)
 - =apply=, and various other built-ins
 
-Not currently supported:
+* Not currently supported:
 
 - Macros
-- Tail recursion
+- Tail recursion (The upshot is that Perl will moan at you if you
+  recurse too deeply.)
 - Call-with-current-continuation (call/cc)
-- Dotted-tail notation
+- Dotted-tail notation (in quoting and in lambdas)
 
-The upshot is that Perl will moan at you if you recurse too
-deeply. Also, if you construct a vector that looks too much like a
-linked list (nested cons cells), the repl's pretty-printer will get
-confused (the actual data is safe though).
+* Extra features:
+
+- =dump= calls Data::Dumper::Dumper on its argument. Helpful for
+  debugging.
+- =perl= evaluates its first argument (a string) as verbatim Perl
+  code, returning the result in the same way as any other procedure
+  (amazing!). It cannot include quotes, however, and the escaping
+  isn't working spectacularly.
+- Calling =(current-environment)= returns the current environment
+  (unsurprisingly), suitable for passing as the second argument to
+  =eval=. Similarly, the symbol =user-initial-environment= is the top
+  level, global environment.
+- You can use λ directly instead of =lambda=. This lisp implementation
+  is streets ahead of the competition now!
+- The command-line option =--load= specifies a file containing
+  expressions to be evaluated before you are dropped into the
+  repl. Including is =lib.scm=, which contains definitions for some
+  common functions (=map=, =fold= etc.).
+
+
+* Extra bugs:
+
+- The various equality operators (=eq= etc.) are slightly inconsistent
+  and unhelpful at the moment.
+- If you construct a vector that looks too much like a linked list
+  (nested cons cells), the repl's pretty-printer will get confused
+  (the actual data is safe though).
 
