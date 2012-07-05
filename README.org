@@ -3,7 +3,7 @@
 
 =tplisp= is a minimalistic interpreter of an extremely limited (at the
 moment) subset of R5RS Scheme. The internals are very lisp-y in their
-own right, and not at all object-oriented for some reason.
+own right, and not at all object-oriented (for some reason).
 
 ** Currently supported:
 
@@ -12,12 +12,12 @@ own right, and not at all object-oriented for some reason.
 - Proper lexically scoped environments & closures
 - Vectors (keyword *and* hash syntax)
 - =apply=, and various other built-ins
+- tail recursion optimisation
+- a type system (not fully worked out yet)
 
 ** Not currently supported:
 
 - Macros
-- Tail recursion (The upshot is that Perl will moan at you if you
-  recurse too deeply.)
 - Call-with-current-continuation (call/cc)
 - Dotted-tail notation (in quoting and in lambdas)
 
@@ -44,7 +44,4 @@ own right, and not at all object-oriented for some reason.
 
 - The various equality operators (=eq= etc.) are slightly inconsistent
   and unhelpful at the moment.
-- If you construct a vector that looks too much like a linked list
-  (nested cons cells), the repl's pretty-printer will get confused
-  (the actual data is safe though).
 
